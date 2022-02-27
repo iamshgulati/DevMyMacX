@@ -15,7 +15,7 @@ Watch it in action - [This is DevMyMacX](https://youtu.be/F-dSk_fuaSQ)
 2. Launch setup
 
    ```sh
-   sh -c "$(curl -fsSL https://github.com/shubhamgulati91/DevMyMacX/raw/dev/bootstrap.sh)" "" --initialize --manual --lean
+   sh -c "$(curl -fsSL https://github.com/shubhamgulati91/DevMyMacX/raw/main/bootstrap.sh)" "" --initialize --manual --lean
    ```
 
 &nbsp;
@@ -23,7 +23,7 @@ Watch it in action - [This is DevMyMacX](https://youtu.be/F-dSk_fuaSQ)
 ## Refresh Setup
 
 ```sh
-sh -c "$(curl -fsSL https://github.com/shubhamgulati91/DevMyMacX/raw/dev/bootstrap.sh)" "" --update --automatic --express
+sh -c "$(curl -fsSL https://github.com/shubhamgulati91/DevMyMacX/raw/main/bootstrap.sh)" "" --update --automatic --express
 ```
 
 &nbsp;

@@ -247,13 +247,13 @@ sh utils/ssh-keys.sh $GIT_USER_EMAIL
 ## Install user apps from cloud backup
 # sh utils/user-apps.sh
 
-# echo
+echo
 # Install JDK
-# sh utils/sdk.sh -jdk
+sh utils/sdk.sh -jdk
 
 # echo
-# Install Node & NPM
-# sh utils/sdk.sh -nvm
+# Install NVM/Node
+# sh utils/sdk.sh -node lts
 
 echo
 echo "Configuring Git..."
