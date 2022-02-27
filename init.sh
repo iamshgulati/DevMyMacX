@@ -193,7 +193,7 @@ if test $(which zsh) && [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "Done"
 
   echo "Activating oh-my-zsh plugins... \c"
-  sed -io 's/^plugins=.*/plugins=(git brew common-aliases copydir copyfile encode64 node osx xcode pod docker git-extras git-prompt)/' ~/.zshrc
+  sed -io 's/^plugins=.*/plugins=(git brew common-aliases copypath copyfile encode64 node osx xcode pod docker git-extras git-prompt)/' ~/.zshrc
   echo "Done"
 fi
 
@@ -204,6 +204,7 @@ if test $(which zsh) && ! grep -q 'source /opt/homebrew/opt/powerlevel10k/powerl
   sed -io '/^ZSH_THEME/ s/^\#*/\# /' ~/.zshrc
   echo '[ -f /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme ] && source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
   curl -Ls $DOTFILES_SRC/raw/main/macOS/zsh/p10k.zsh > ~/.p10k.zsh
+  sed -io 's/^  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=.*/  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last/' ~/.p10k.zsh
   {
     echo ''
     echo '# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.'
