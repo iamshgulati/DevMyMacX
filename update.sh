@@ -126,8 +126,8 @@ sudo softwareupdate -i -a
 # sh utils/user-apps.sh
 
 # echo
-# Update Node & NPM
-# sh utils/sdk.sh -nvm-node
+# Update NVM/Node
+# sh utils/sdk.sh -node lts
 
 echo
 # Backing up application and personal config files to cloud
