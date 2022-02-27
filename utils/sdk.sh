@@ -28,7 +28,6 @@ setup_jdk () {
 }
 
 setup_nvm () {
-    NODE_VERSION=${1}
     echo "Installing nvm... \c"
     if ! test $(command -v nvm); then
         brew install nvm &>/dev/null
@@ -55,16 +54,14 @@ setup_node () {
     if ! test $(command -v nvm); then setup_nvm; fi
 
     echo "Intalling node\c"
-    if ! test $(command -v node); then
-        if [[ ${NODE_VERSION} = "lts" ]]; then
-            echo " lts version through nvm... \c"
-            nvm install --lts &>/dev/null
-            # nvm use --lts &>/dev/null
-        else
-            echo " current version through nvm... \c"
-            nvm install node &>/dev/null
-            # nvm use node &>/dev/null
-        fi
+    if [ ${NODE_VERSION} = "lts" ]; then
+        echo " lts version through nvm... \c"
+        nvm install --lts &>/dev/null
+        nvm use --lts &>/dev/null
+    else
+        echo " current version through nvm... \c"
+        nvm install node &>/dev/null
+        nvm use node &>/dev/null
     fi
 
     echo "Clearing nvm cache... \c"

@@ -251,9 +251,9 @@ echo
 # Install JDK
 sh utils/sdk.sh -jdk
 
-# echo
+echo
 # Install NVM/Node
-# sh utils/sdk.sh -node lts
+sh utils/sdk.sh -node lts
 
 echo
 echo "Configuring Git..."
