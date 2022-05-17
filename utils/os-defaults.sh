@@ -176,7 +176,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 	Privileges -bool true
 
 # Finder: Always open everything in Finder's list view. Four-letter codes for view modes: `icnv`, `Nlsv`, `clmv`, `Flwv`
-## defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 # Finder: Show status bar
 ## defaults write com.apple.finder ShowStatusBar -bool true
