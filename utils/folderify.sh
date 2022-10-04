@@ -34,21 +34,22 @@ folderify_me () {
     fi
 }
 
-folderify_me code.png $HOME/Developer/Code
 folderify_me projects.png $HOME/Developer/Projects
 folderify_me archive.png $HOME/Developer/Projects/Archive
 folderify_me current.png $HOME/Developer/Projects/Current
+
 folderify_me source.png $HOME/Developer/Source
 folderify_me bitbucket.png $HOME/Developer/Source/Bitbucket
 folderify_me github.png $HOME/Developer/Source/GitHub
 folderify_me gitlab.png $HOME/Developer/Source/GitLab
 
-folderify_me jetbrains-intellij.png $HOME/Developer/Projects/IntelliJIDEA
-folderify_me jetbrains-datagrip.png $HOME/Developer/Projects/DataGrip
-folderify_me jetbrains-webstorm.png $HOME/Developer/Projects/WebStorm
-folderify_me vscode.png $HOME/Developer/Projects/VSCode
-folderify_me postman.png $HOME/Developer/Projects/Postman
-folderify_me iMovie.png $HOME/Developer/Projects/iMovie
+folderify_me code.png $HOME/Developer/Workspace
+folderify_me jetbrains-intellij.png $HOME/Developer/Workspace/IntelliJIDEA
+folderify_me jetbrains-datagrip.png $HOME/Developer/Workspace/DataGrip
+folderify_me jetbrains-webstorm.png $HOME/Developer/Workspace/WebStorm
+folderify_me vscode.png $HOME/Developer/Workspace/VSCode
+folderify_me postman.png $HOME/Developer/Workspace/Postman
+folderify_me iMovie.png $HOME/Developer/Workspace/iMovie
 
 folderify_me iCloud-drive.png $HOME/Library/Mobile\ Documents/com~apple~CloudDocs
 folderify_me google-drive.png $HOME/Google\ Drive

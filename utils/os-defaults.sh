@@ -10,7 +10,7 @@ echo "Setting sane defaults for System... \c"
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # AirDrop: Use AirDrop over every interface.
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+# ? defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 
 # System: Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -19,10 +19,10 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
 # System: Increase window resize speed for native mac applications
-defaults write NSGlobalDomain NSWindowResizeTime -float 0.1
+# defaults write NSGlobalDomain NSWindowResizeTime -float 0.1
 
 # System: Disable the “Are you sure you want to open this application?” dialog
-# ? defaults write com.apple.LaunchServices LSQuarantine -bool false
+## ? defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write com.apple.LaunchServices LSQuarantine -bool NO
 
 # System: Disable opening and closing window animations defaults
@@ -36,10 +36,10 @@ echo "Done"
 
 echo "Setting sane defaults for Trackpad... \c"
 
-# Trackpad: Enable tap to click for this user and for the login screen
-# ? defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-# ? defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-# ? defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+## Trackpad: Enable tap to click for this user and for the login screen
+## ? defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+## ? defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+## ? defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 echo "Done"
 
@@ -69,7 +69,7 @@ echo "Done"
 echo "Setting sane defaults for Display... \c"
 
 # Display: Enable subpixel font rendering on non-Apple LCDs
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
+## ? defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 echo "Done"
 
@@ -94,16 +94,16 @@ echo "Done"
 echo "Setting sane defaults for Dock... \c"
 
 # Dock: Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
+# defaults write com.apple.dock autohide -bool true
 
 # Dock: Remove the auto-hiding Dock delay
-defaults write com.apple.dock autohide-delay -int 0
+# defaults write com.apple.dock autohide-delay -int 0
 
 # Dock: Speed up Dock show animation
-defaults write com.apple.dock autohide-time-modifier -float 0.4
+# defaults write com.apple.dock autohide-time-modifier -float 0.4
 
 # Dock: Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool true
+# defaults write com.apple.dock minimize-to-application -bool true
 
 # Dock: Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -115,7 +115,7 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 ## defaults write com.apple.dock contents-immutable -bool true
 
 # Dock: Make Dock icons of hidden applications translucent
-# defaults write com.apple.dock showhidden -bool true
+## defaults write com.apple.dock showhidden -bool true
 
 echo "Done"
 
@@ -126,7 +126,7 @@ echo "Done"
 echo "Setting sane defaults for Launchpad... \c"
 
 # Launchpad: Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.1
+# defaults write com.apple.dock expose-animation-duration -float 0.1
 
 # Launchpad: Reset layout
 ## defaults -currentHost write com.apple.dock ResetLaunchPad -bool true

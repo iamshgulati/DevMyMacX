@@ -117,12 +117,12 @@ sh utils/os-defaults.sh
 # Cleanup default junk on dock
 [[ ${DELETE_ALL_DOCK_ICONS} =~ ^[Yy]$ ]] && defaults delete com.apple.dock persistent-apps && defaults delete com.apple.dock persistent-others
 
-echo
-echo "Installing Rosetta... \c"
-if [[ $(sysctl -n machdep.cpu.brand_string)="*Apple*" && $(launchctl list | grep "com.apple.oahd-root-helper") == "" ]]; then
-    sudo softwareupdate --install-rosetta --agree-to-license &>/dev/null
-fi
-echo "Done"
+# echo
+# echo "Installing Rosetta... \c"
+# if [[ $(sysctl -n machdep.cpu.brand_string)="*Apple*" && $(launchctl list | grep "com.apple.oahd-root-helper") == "" ]]; then
+#     sudo softwareupdate --install-rosetta --agree-to-license &>/dev/null
+# fi
+# echo "Done"
 
 echo
 echo "Installing Homebrew... \c"
@@ -218,7 +218,7 @@ sh utils/editor.sh -code
 
 echo
 echo "Creating Developer directory tree... \c"
-mkdir -p $HOME/{Developer/{Code,Projects/{Archive,Current,IntelliJIDEA,DataGrip,WebStorm,VSCode,Postman/files,iMovie},Source/{Bitbucket,GitHub,GitLab}},Sync} &>/dev/null
+mkdir -p $HOME/{Developer/{Workspace/{IntelliJIDEA,DataGrip,WebStorm,VSCode,Postman/files,iMovie},Projects/{Archive,Current},Source/{Bitbucket,GitHub,GitLab}},Sync} &>/dev/null
 echo "Done"
 
 echo
