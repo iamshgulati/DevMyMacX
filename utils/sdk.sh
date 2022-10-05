@@ -4,26 +4,39 @@
 SDK=$1
 SDK_VERSION=$2
 
-setup_jdk () {
-    echo "Setting up method to switch between different jdk versions... \c"
-    if ! test $(which javac) || [ ! "$(ls /Library/Java/JavaVirtualMachines)" ]; then
-        echo "Maybe install a jdk first."
-        exit 1
+setup_jenv () {
+    echo "Installing jenv... \c"
+    if ! test $(command -v jenv); then
+        brew install jenv &>/dev/null
     fi
-    [ ! -f $HOME/.zshenv ] && touch $HOME/.zshenv
-    if ! grep -Fq "jdk()" ~/.zshenv; then
+    [ ! -d $HOME/.jenv ] && mkdir $HOME/.jenv &>/dev/null
+    if ! grep -q '"$HOME/.jenv/bin:$PATH"' ~/.zshrc; then
         {
             echo ''
-            echo 'jdk() {'
-            echo '  jdk_version=$1'
-            echo '  export JAVA_HOME=$(/usr/libexec/java_home -v"$jdk_version");'
-            echo '  java -version'
-            echo '}'
-        } >> ~/.zshenv
+            echo 'export PATH="$HOME/.jenv/bin:$PATH"'
+            echo 'eval "$(jenv init -)"'
+        } >> ~/.zshrc
     fi
     echo "Done"
 
-    echo "List of JDK versions installed... \c"
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)" &>/dev/null
+}
+
+setup_jdk () {
+    JDK_VERSION=${1}
+    if ! test $(command -v jenv); then setup_jenv; fi
+
+    echo "Installing jdk... \c"
+    if ! test $(which javac) || [ ! "$(ls /Library/Java/JavaVirtualMachines)" ]; then
+        brew install --cask ${JDK_VERSION}
+    else
+        echo "already installed... \c"
+    fi
+
+    echo "Done"
+
+    echo "List of jdk versions installed... \c"
     ls /Library/Java/JavaVirtualMachines
 }
 
@@ -78,7 +91,8 @@ setup_node () {
 
 while [[ "$#" -gt 0 ]]; do
     case $SDK in
-        -jdk|--java-development-kit) setup_jdk; shift ;;
+        -jenv|--java-environment-manager) setup_jenv; shift ;;
+        -jdk|--java-development-kit) setup_jdk $SDK_VERSION; shift ;;
         -nvm|--node-version-manager) setup_nvm; shift ;;
         -node|--node) setup_node $SDK_VERSION; shift ;;
         *) echo "$0: Unknown parameter passed: $SDK"; exit 1 ;;

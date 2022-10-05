@@ -238,7 +238,7 @@ echo "Done"
 
 echo
 # Restoring private backed up application and personal config files from cloud
-sh utils/mackup.sh --restore
+# sh utils/mackup.sh --restore
 
 echo
 # Configure ssh keys
@@ -249,8 +249,8 @@ sh utils/ssh-keys.sh $GIT_USER_EMAIL
 # sh utils/user-apps.sh
 
 echo
-# Install JDK
-sh utils/sdk.sh -jdk
+# Install Jenv/JDK
+sh utils/sdk.sh -jdk temurin
 
 echo
 # Install NVM/Node
