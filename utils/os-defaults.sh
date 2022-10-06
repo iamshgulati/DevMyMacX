@@ -103,7 +103,7 @@ echo "Setting sane defaults for Dock... \c"
 # defaults write com.apple.dock autohide-time-modifier -float 0.4
 
 # Dock: Minimize windows into their application’s icon
-# defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock minimize-to-application -bool true
 
 # Dock: Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
