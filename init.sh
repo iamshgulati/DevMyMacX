@@ -238,7 +238,7 @@ echo "Done"
 
 echo
 # Restoring private backed up application and personal config files from cloud
-# sh utils/mackup.sh --restore
+sh utils/mackup.sh --restore
 
 echo
 # Configure ssh keys
