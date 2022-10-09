@@ -41,12 +41,16 @@ setup_jdk () {
     echo "List of jdk versions installed... \c"
     ls -1 /Library/Java/JavaVirtualMachines
 
+    echo "Adding installed jdk versions to jenv... \c"
+    # jenv add /Library/Java/JavaVirtualMachines/temurin-19.jdk/Contents/Home
     jenv add "$(/usr/libexec/java_home)"
     jenv versions
 
     # jenv global 19
     # jenv local 19
     # jenv shell 19
+
+    # echo ${JAVA_HOME}
 }
 
 setup_nvm () {
