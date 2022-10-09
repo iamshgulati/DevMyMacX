@@ -21,6 +21,8 @@ setup_jenv () {
 
     export PATH="$HOME/.jenv/bin:$PATH"
     eval "$(jenv init -)" &>/dev/null
+    jenv enable-plugin export &>/dev/null
+    # jenv doctor
 }
 
 setup_jdk () {
@@ -37,7 +39,14 @@ setup_jdk () {
     echo "Done"
 
     echo "List of jdk versions installed... \c"
-    ls /Library/Java/JavaVirtualMachines
+    ls -1 /Library/Java/JavaVirtualMachines
+
+    jenv add "$(/usr/libexec/java_home)"
+    jenv versions
+
+    # jenv global 19
+    # jenv local 19
+    # jenv shell 19
 }
 
 setup_nvm () {
