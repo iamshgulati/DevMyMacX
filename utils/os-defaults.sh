@@ -100,7 +100,7 @@ defaults write com.apple.dock orientation left
 defaults write com.apple.dock autohide -bool true
 
 # Dock: Remove the auto-hiding Dock delay
-defaults write com.apple.dock autohide-delay -int 0
+defaults write com.apple.dock autohide-delay -float 0.0
 
 # Dock: Speed up Dock show animation
 defaults write com.apple.dock autohide-time-modifier -float 0.4
