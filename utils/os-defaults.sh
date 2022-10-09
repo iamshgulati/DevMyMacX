@@ -94,13 +94,13 @@ echo "Done"
 echo "Setting sane defaults for Dock... \c"
 
 # Dock: Automatically hide and show the Dock
-# defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide -bool true
 
 # Dock: Remove the auto-hiding Dock delay
-# defaults write com.apple.dock autohide-delay -int 0
+defaults write com.apple.dock autohide-delay -int 0
 
 # Dock: Speed up Dock show animation
-# defaults write com.apple.dock autohide-time-modifier -float 0.4
+defaults write com.apple.dock autohide-time-modifier -float 0.4
 
 # Dock: Minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool true
