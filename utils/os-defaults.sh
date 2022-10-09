@@ -102,8 +102,8 @@ defaults write com.apple.dock autohide -bool true
 # Dock: Remove the auto-hiding Dock delay
 defaults write com.apple.dock autohide-delay -float 0.0
 
-# Dock: Speed up Dock show animation
-defaults write com.apple.dock autohide-time-modifier -float 0.4
+# Dock: Speed up Dock show animation; Fast but smooth 0.4; Default 1.0
+defaults write com.apple.dock autohide-time-modifier -float 1.0
 
 # Dock: Minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool true
