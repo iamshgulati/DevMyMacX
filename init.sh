@@ -280,14 +280,14 @@ echo
 # Clone user's projects from version control
 sh utils/projects.sh
 
-echo
-echo "Enabling installed services... \c"
-  # [ -e "/Applications/Amphetamine.app" ] && open /Applications/Amphetamine.app
-  # [ -e "/Applications/Magnet.app" ] && open /Applications/Magnet.app
-  # [ -e "/Applications/Alfred\ 4.app" ] && open /Applications/Alfred\ 4.app
-  # [ -e "/Applications/Gas\ Mask.app" ] && open /Applications/Gas\ Mask.app
-  if test $(command -v syncthing); then brew services start syncthing &>/dev/null; fi
-echo "Done"
+# echo
+# echo "Enabling installed services... \c"
+#   # [ -e "/Applications/Amphetamine.app" ] && open /Applications/Amphetamine.app
+#   # [ -e "/Applications/Magnet.app" ] && open /Applications/Magnet.app
+#   # [ -e "/Applications/Alfred\ 4.app" ] && open /Applications/Alfred\ 4.app
+#   # [ -e "/Applications/Gas\ Mask.app" ] && open /Applications/Gas\ Mask.app
+#   # if test $(command -v syncthing); then brew services start syncthing &>/dev/null; fi
+# echo "Done"
 
 echo
 echo "${YELLOW}Thanks for using DevMyMacX!${NC}"
