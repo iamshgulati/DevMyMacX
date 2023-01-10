@@ -26,9 +26,12 @@ if ! (type xcode-select >&- && xpath=$( xcode-select --print-path ) && test -d "
     echo "${RED}Need to install the XCode Command Line Tools (or XCode) first! Starting install...${NC}"
     # Install XCode Command Line Tools
     xcode-select --install &>/dev/null
-    # System update causes Command Line Tools install failures and gets resolved with below command
-    # sudo rm -rf /Library/Developer/CommandLineTools
     exit 1
+
+    # System update causes Command Line Tools install failures and gets resolved with below command
+    # sudo rm -rf `xcode-select -p`
+    # xcode-select --install
+    # sudo xcode-select -r
 fi
 
 # Ask for the administrator password upfront.
