@@ -21,18 +21,18 @@ DEFAULT_INSTALL_BUNDLE_DEVELOPMENT='n'
 DEFAULT_INSTALL_BUNDLE_MSOFFICE='n'
 DEFAULT_DELETE_ALL_DOCK_ICONS='n'
 
-# Check if XCode Command line tools are installed
-if ! (type xcode-select >&- && xpath=$( xcode-select --print-path ) && test -d "${xpath}" && test -x "${xpath}") ; then
-    echo "${RED}Need to install the XCode Command Line Tools (or XCode) first! Starting install...${NC}"
-    # Install XCode Command Line Tools
-    xcode-select --install &>/dev/null
-    exit 1
+# # Check if XCode Command line tools are installed
+# if ! (type xcode-select >&- && xpath=$( xcode-select --print-path ) && test -d "${xpath}" && test -x "${xpath}") ; then
+#     echo "${RED}Need to install the XCode Command Line Tools (or XCode) first! Starting install...${NC}"
+#     # Install XCode Command Line Tools
+#     xcode-select --install &>/dev/null
+#     exit 1
 
-    # System update causes Command Line Tools install failures and gets resolved with below command
-    # sudo rm -rf `xcode-select -p`
-    # xcode-select --install
-    # sudo xcode-select -r
-fi
+#     # System update causes Command Line Tools install failures and gets resolved with below command
+#     # sudo rm -rf `xcode-select -p`
+#     # xcode-select --install
+#     # sudo xcode-select -r
+# fi
 
 # Ask for the administrator password upfront.
 echo "Requesting admin access... \c"
