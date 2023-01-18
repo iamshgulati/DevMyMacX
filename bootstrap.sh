@@ -81,13 +81,13 @@ confirm_action () {
     done
 }
 
-# Check if XCode Command line tools are installed
-if ! (type xcode-select >&- && xpath=$( xcode-select --print-path ) && test -d "${xpath}" && test -x "${xpath}") ; then
-    echo "${RED}Need to install the XCode Command Line Tools (or XCode) first! Starting install...${NC}"
-    # Install XCode Command Line Tools
-    xcode-select --install &>/dev/null
-    exit 1
-fi
+# # Check if XCode Command line tools are installed
+# if ! (type xcode-select >&- && xpath=$( xcode-select --print-path ) && test -d "${xpath}" && test -x "${xpath}") ; then
+#     echo "${RED}Need to install the XCode Command Line Tools (or XCode) first! Starting install...${NC}"
+#     # Install XCode Command Line Tools
+#     xcode-select --install &>/dev/null
+#     exit 1
+# fi
 
 case $SETUP_MODE in
     -a|--automatic) SETUP_MODE='a' ;;
