@@ -129,22 +129,6 @@ sh utils/os-defaults.sh
 # fi
 # echo "Done"
 
-echo
-echo "Installing Homebrew... \c"
-if test ! $(which brew); then
-  yes '' | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &>/dev/null
-  [ ! -f $HOME/.zprofile ] && touch $HOME/.zprofile
-  if ! grep -Fq "/opt/homebrew/bin/brew" ~/.zprofile; then
-    echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> ~/.zprofile
-  fi
-  eval $(/opt/homebrew/bin/brew shellenv) &>/dev/null
-fi
-echo "Done"
-
-echo "Disabling Homebrew Analytics... \c"
-brew analytics off &>/dev/null
-echo "Done"
-
 # Tap homebrew/bundle
 brew tap homebrew/bundle &>/dev/null
 
