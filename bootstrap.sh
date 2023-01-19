@@ -81,11 +81,18 @@ confirm_action () {
     done
 }
 
+# Ask for the administrator password upfront.
+echo "Requesting admin access... \c"
+sudo -v
+echo "${GREEN}Running as admin${NC}"
+
+# Keep sudo until script is finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 echo
 echo "Installing Homebrew... \c"
 if test ! $(which brew); then
-    # yes '' | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &>/dev/null
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    yes '' | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &>/dev/null
     eval $(/opt/homebrew/bin/brew shellenv) &>/dev/null
     [ ! -f $HOME/.zprofile ] && touch $HOME/.zprofile
     if ! grep -Fq "/opt/homebrew/bin/brew" ~/.zprofile; then
