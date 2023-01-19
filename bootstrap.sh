@@ -84,7 +84,8 @@ confirm_action () {
 echo
 echo "Installing Homebrew... \c"
 if test ! $(which brew); then
-    yes '' | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &>/dev/null
+    # yes '' | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &>/dev/null
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval $(/opt/homebrew/bin/brew shellenv) &>/dev/null
     [ ! -f $HOME/.zprofile ] && touch $HOME/.zprofile
     if ! grep -Fq "/opt/homebrew/bin/brew" ~/.zprofile; then
