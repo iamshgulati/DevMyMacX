@@ -52,11 +52,12 @@ folderify_me postman.png $HOME/Developer/Workspace/Postman
 folderify_me iMovie.png $HOME/Developer/Workspace/iMovie
 
 folderify_me iCloud-drive.png $HOME/Library/Mobile\ Documents/com~apple~CloudDocs
-folderify_me google-drive.png $HOME/Google\ Drive
 folderify_me syncthing.png $HOME/Sync
 
-[ -d "$HOME/Projects" ] && rm -f "$HOME/Projects"
-[ -d "$HOME/Developer/Projects/Current" ] && ln -s "$HOME/Developer/Projects/Current" "$HOME/Projects"
+# folderify_me google-drive.png $HOME/Google\ Drive
 
-[ -d "$HOME/iCloud Drive" ] && rm -f "$HOME/iCloud Drive"
-[ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ] && ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" "$HOME/iCloud Drive"
+# [ -d "$HOME/Projects" ] && rm -f "$HOME/Projects"
+# [ -d "$HOME/Developer/Projects/Current" ] && ln -s "$HOME/Developer/Projects/Current" "$HOME/Projects"
+
+# [ -d "$HOME/iCloud Drive" ] && rm -f "$HOME/iCloud Drive"
+# [ -d "$HOME/Library/Mobile Documents/com~apple~CloudDocs" ] && ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" "$HOME/iCloud Drive"
