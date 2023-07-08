@@ -15,9 +15,11 @@ setup_vscode () {
     echo "Installing VSCode extensions... \c"
     sh -c "$(curl -fsSL $DEFAULT_DOTFILES_REPO/raw/main/macOS/vscode/install-extensions.sh)" "" "code" &>/dev/null
     echo "Done"
-    echo "Installing VSCode user settings... \c"
-    curl -Ls $DEFAULT_DOTFILES_REPO/raw/main/macOS/vscode/settings.json > ~/Library/Application\ Support/Code/User/settings.json
-    echo "Done"
+
+    # Mackup will restore user's settings.json
+    # echo "Installing VSCode user settings... \c"
+    # curl -Ls $DEFAULT_DOTFILES_REPO/raw/main/macOS/vscode/settings.json > ~/Library/Application\ Support/Code/User/settings.json
+    # echo "Done"
 }
 
 while [[ "$#" -gt 0 ]]; do
