@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Variables
-DEFAULT_PRIVATE_DATA_CHECKOUT_LOCATION=$HOME/.Backup
+DEFAULT_PRIVATE_DATA_CHECKOUT_LOCATION=$HOME/.backup
 
 get_user_property () {
   PROPERTY_KEY=$1

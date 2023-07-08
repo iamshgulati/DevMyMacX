@@ -7,7 +7,7 @@ SETUP_MODE=$1
 SETUP_PACKAGE=$2
 
 # Homebrew variables
-DEFAULT_BREWFILES_CHECHOUT_LOCATION=$(dirname "$0")/.Brewfiles
+DEFAULT_BREWFILES_CHECHOUT_LOCATION=$(dirname "$0")/.brewfiles
 DEFAULT_BREWFILE_APP_STORE='Brewfile-1-App-Store-Bundle'
 DEFAULT_BREWFILE_ESSENTIALS='Brewfile-2-Essential-Bundle'
 DEFAULT_BREWFILE_DEVELOPER='Brewfile-3-Developer-Bundle'
