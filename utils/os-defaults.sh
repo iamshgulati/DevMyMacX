@@ -94,7 +94,7 @@ echo "Done"
 echo "Setting sane defaults for Dock... \c"
 
 # Dock: Position to left
-defaults write com.apple.dock orientation left
+defaults write com.apple.dock orientation right
 
 # Dock: Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
