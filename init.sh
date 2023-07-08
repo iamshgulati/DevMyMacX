@@ -146,13 +146,13 @@ install_bundle $DEFAULT_BREWFILE_MSOFFICE $INSTALL_BUNDLE_MSOFFICE
 echo
 sh utils/zsh.sh
 
-# Install powerlevel10k zsh theme
-echo
-sh utils/zsh-theme.sh
+# # Install powerlevel10k zsh theme
+# echo
+# sh utils/zsh-theme.sh
 
-# Install oh-my-zsh and activate oh-my-zsh plugins
-echo
-sh utils/oh-my-zsh.sh
+# # Install oh-my-zsh and activate oh-my-zsh plugins
+# echo
+# sh utils/oh-my-zsh.sh
 
 # Install code editor
 echo
