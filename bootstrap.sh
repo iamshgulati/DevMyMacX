@@ -17,13 +17,13 @@ DEFAULT_SETUP_MODE='m'
 DEFAULT_SETUP_PACKAGE='l'
 
 # Script variables
-DEFAULT_SETUP_REPO='https://github.com/shubhamgulati91/DevMyMacX'
-DEFAULT_SETUP_REPO_BRANCH=dev
+DEFAULT_SETUP_REPO='https://github.com/iamshgulati/DevMyMacX'
+DEFAULT_SETUP_REPO_BRANCH=main
 BOOTSTRAP_SCRIPT="$DEFAULT_SETUP_REPO/raw/$DEFAULT_SETUP_REPO_BRANCH/bootstrap.sh"
 
-DEFAULT_SETUP_CHECKOUT_DIR_DEV="$HOME/Developer/Projects/Current/DevMyMacX"
-DEFAULT_SETUP_CHECKOUT_DIR_USER="/tmp/DevMyMacX"
-DEFAULT_SETUP_CHECKOUT_DIR=$DEFAULT_SETUP_CHECKOUT_DIR_DEV
+DEFAULT_SETUP_CHECKOUT_DIR_TMP="/tmp/DevMyMacX"
+DEFAULT_SETUP_CHECKOUT_DIR_DEV="$HOME/Developer/DevMyMacX"
+DEFAULT_SETUP_CHECKOUT_DIR=$DEFAULT_SETUP_CHECKOUT_DIR_TMP
 
 restart_bootstrapper() {
     clear
@@ -62,7 +62,7 @@ checkout_setup() {
 }
 
 confirm_action () {
-    if [ ${DEFAULT_SETUP_REPO_BRANCH} != "main" ]; then return; fi
+    # if [ ${DEFAULT_SETUP_REPO_BRANCH} != "main" ]; then return; fi
     echo
     echo "${GREEN}Update your details in conf/user.properties file...${NC}"
     ENTER_KEY=return

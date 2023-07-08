@@ -194,7 +194,7 @@ defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 ## defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
 # Finder: Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
-defaults write com.apple.finder QuitMenuItem -bool true
+## defaults write com.apple.finder QuitMenuItem -bool true
 
 echo "Done"
 

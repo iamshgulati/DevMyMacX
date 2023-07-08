@@ -76,25 +76,30 @@ case $SETUP_MODE in
   -m|--manual|*) set_default_values $SETUP_PACKAGE; interactive_setup 60 ;;
 esac
 
+# Create a time machine backup
 echo
 echo "Creating local snapshot using Time Machine before making changes... \c"
 sudo tmutil localsnapshot &>/dev/null
 echo "Done"
 
+# Update homebrew
 echo
 echo "Updating Homebrew to latest version... \c"
 brew update &>/dev/null
 echo "Done"
 
+# Upgrade homebrew formulae
 echo
 echo "Upgrading already-installed Homebrew formulae..."
 brew upgrade
 
+# Cleanup outdated versions from cellar
 echo
 echo "Cleaning up outdated versions from homebrew cellar... \c"
 brew cleanup &>/dev/null
 echo "Done"
 
+# Fetch homebrew bundle files
 echo
 BREWFILES_SRC="$DOTFILES_SRC/raw/main/macOS/homebrew"
 echo "Fetching brewfiles from ${BLUE}$BREWFILES_SRC${NC} to $DEFAULT_BREWFILES_CHECHOUT_LOCATION ... \c"
@@ -107,33 +112,28 @@ install_bundle $DEFAULT_BREWFILE_ESSENTIALS $INSTALL_BUNDLE_ESSENTIALS
 install_bundle $DEFAULT_BREWFILE_DEVELOPER $INSTALL_BUNDLE_DEVELOPMENT
 install_bundle $DEFAULT_BREWFILE_MSOFFICE $INSTALL_BUNDLE_MSOFFICE
 
+# Check problems with homebrew
 echo
 echo "Checking for problems with Homebrew... \c"
 brew doctor &>/dev/null
 echo "Done"
 
+# Update oh my zsh
 echo
 echo "Updating Oh My Zsh... \c"
 if [ -d "$HOME/.oh-my-zsh" ]; then env ZSH=$ZSH sh $ZSH/tools/upgrade.sh &>/dev/null; fi
 echo "Done"
 
+# Update mac apps
 echo
 echo "Updating Mac App Store Applications..."
 sudo softwareupdate -i -a
 
-# echo
-## Install user apps from cloud backup
-# sh utils/user-apps.sh
-
-# echo
-# Update NVM/Node
-# sh utils/sdk.sh -node lts
-
-echo
 # Backing up application and personal config files to cloud
+echo
 sh utils/mackup.sh --backup
 
 echo
 echo "${YELLOW}Thanks for using DevMyMacX!${NC}"
-echo "${YELLOW}If you liked it, make sure to go to the GitHub repo (https://github.com/shubhamgulati91/DevMyMacX) and star it!${NC}"
+echo "${YELLOW}If you liked it, make sure to go to the GitHub repo (https://github.com/iamshgulati/DevMyMacX) and star it!${NC}"
 echo "${YELLOW}If you have any issues, just put them there. All suggestions and contributions are appreciated!${NC}"

@@ -6,7 +6,7 @@ MACKUP_BACKUP_LOCATION=$2
 
 # Script variables
 DEFAULT_MACKUP_BACKUP_LOCATION=${HOME}/.Backup
-DEFAULT_DOTFILES_REPO='https://github.com/shubhamgulati91/dotfiles'
+DEFAULT_DOTFILES_REPO='https://github.com/iamshgulati/dotfiles'
 
 check_installation () {
     if ! test $(which mackup); then

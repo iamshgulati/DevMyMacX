@@ -54,3 +54,49 @@ install_bundle() {
       brew bundle --file=$DEFAULT_BREWFILES_CHECHOUT_LOCATION/$BREWFILE
   fi
 }
+
+time_machine_backup() {
+  echo "Creating local time machine snapshot before making changes... \c"
+  sudo tmutil localsnapshot &>/dev/null
+  echo "Done"
+}
+
+check_cli_tools_installed() {
+  if ! (type xcode-select >&- && xpath=$( xcode-select --print-path ) && test -d "${xpath}" && test -x "${xpath}") ; then
+    echo "${RED}Need to install the XCode Command Line Tools (or XCode) first! Starting install...${NC}"
+    # Install XCode Command Line Tools
+    xcode-select --install &>/dev/null
+    exit 1
+
+    # System update causes Command Line Tools install failures and gets resolved with below command
+    # sudo rm -rf `xcode-select -p`
+    # xcode-select --install
+    # sudo xcode-select -r
+fi
+}
+
+install_rosetta() {
+  echo "Installing Rosetta... \c"
+  if [[ $(sysctl -n machdep.cpu.brand_string)="*Apple*" && $(launchctl list | grep "com.apple.oahd-root-helper") == "" ]]; then
+      sudo softwareupdate --install-rosetta --agree-to-license &>/dev/null
+  fi
+  echo "Done"
+}
+
+developer_dir_tree() {
+  echo "Creating developer directory tree... \c"
+  mkdir -p $HOME/{Developer/{Workspace/{IntelliJIDEA,DataGrip,WebStorm,VSCode,Postman/files,iMovie},Projects/{Archive,Current},Source/{Bitbucket,GitHub,GitLab}},Sync} &>/dev/null
+  echo "Done"
+}
+
+setup_user_bin_dir() {
+  echo "Create user's bin directory and add to path... \c"
+  [ ! -d $HOME/.bin ] && mkdir $HOME/.bin
+  if ! grep -q '$HOME/.bin:$PATH' ~/.zshrc ; then
+    {
+      echo ''
+      echo 'export PATH=$HOME/.bin:$PATH'
+    } >> ~/.zshrc
+  fi
+  echo "Done"
+}

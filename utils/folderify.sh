@@ -8,11 +8,15 @@ DEFAULT_CUSTOM_ICONS_LOCATION=$(dirname "$0")/../icons
 
 [ -z "${CUSTOM_ICONS_LOCATION}" ] && CUSTOM_ICONS_LOCATION=$DEFAULT_CUSTOM_ICONS_LOCATION
 
-echo "Setting custom folder icons... "
+echo "Installing folderify... \c"
 if ! test $(which folderify); then
-    echo "Maybe try installing folderify first."
-    exit 1
+    brew install folderify &>/dev/null
+else
+    echo "already installed... \c"
 fi
+echo "Done"
+
+echo "Setting custom folder icons... "
 
 if [[ ! -d "${CUSTOM_ICONS_LOCATION}" ]]; then
     echo "Custom icons do not exist at $CUSTOM_ICONS_LOCATION."

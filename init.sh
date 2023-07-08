@@ -22,17 +22,8 @@ DEFAULT_INSTALL_BUNDLE_MSOFFICE='n'
 DEFAULT_DELETE_ALL_DOCK_ICONS='n'
 
 # # Check if XCode Command line tools are installed
-# if ! (type xcode-select >&- && xpath=$( xcode-select --print-path ) && test -d "${xpath}" && test -x "${xpath}") ; then
-#     echo "${RED}Need to install the XCode Command Line Tools (or XCode) first! Starting install...${NC}"
-#     # Install XCode Command Line Tools
-#     xcode-select --install &>/dev/null
-#     exit 1
-
-#     # System update causes Command Line Tools install failures and gets resolved with below command
-#     # sudo rm -rf `xcode-select -p`
-#     # xcode-select --install
-#     # sudo xcode-select -r
-# fi
+# echo
+# check_cli_tools_installed
 
 # Ask for the administrator password upfront.
 echo "Requesting admin access... \c"
@@ -104,10 +95,9 @@ case $SETUP_MODE in
   -m|--manual|*) set_default_values $SETUP_PACKAGE; interactive_setup 60 ;;
 esac
 
+# Create a time machine backup
 echo
-echo "Creating local snapshot in time machine before making changes... \c"
-sudo tmutil localsnapshot &>/dev/null
-echo "Done"
+time_machine_backup
 
 # Set computer name
 sudo scutil --set ComputerName "${COMPUTER_NAME}"
@@ -115,29 +105,31 @@ sudo scutil --set HostName "${HOSTNAME}"
 sudo scutil --set LocalHostName "${LOCAL_HOSTNAME}"
 dscacheutil -flushcache
 
-echo
 # Change settings for native apps and system
+echo
 sh utils/os-defaults.sh
 
 # Cleanup default junk on dock
 [[ ${DELETE_ALL_DOCK_ICONS} =~ ^[Yy]$ ]] && defaults delete com.apple.dock persistent-apps && defaults delete com.apple.dock persistent-others
 
+# # Install Rosetta
 # echo
-# echo "Installing Rosetta... \c"
-# if [[ $(sysctl -n machdep.cpu.brand_string)="*Apple*" && $(launchctl list | grep "com.apple.oahd-root-helper") == "" ]]; then
-#     sudo softwareupdate --install-rosetta --agree-to-license &>/dev/null
-# fi
-# echo "Done"
+# install_rosetta
 
 # Tap homebrew/bundle
+echo
+echo "Tap homebrew/bundle... \c"
 brew tap homebrew/bundle &>/dev/null
+echo "Done"
 
+# Fetch homebrew bundle files
 echo
 BREWFILES_SRC="$DOTFILES_SRC/raw/main/macOS/homebrew"
 echo "Fetching Brewfiles from ${BLUE}$BREWFILES_SRC${NC} to $DEFAULT_BREWFILES_CHECHOUT_LOCATION ... \c"
 rm -rf $DEFAULT_BREWFILES_CHECHOUT_LOCATION &>/dev/null && mkdir $DEFAULT_BREWFILES_CHECHOUT_LOCATION &>/dev/null
 echo "Done"
 
+# Installing Mac App Store CLI Support
 echo
 echo "Installing Mac App Store CLI Support... \c"
 brew install mas &>/dev/null
@@ -150,101 +142,57 @@ install_bundle $DEFAULT_BREWFILE_ESSENTIALS $INSTALL_BUNDLE_ESSENTIALS
 install_bundle $DEFAULT_BREWFILE_DEVELOPER $INSTALL_BUNDLE_DEVELOPMENT
 install_bundle $DEFAULT_BREWFILE_MSOFFICE $INSTALL_BUNDLE_MSOFFICE
 
+# Install zsh and activate zsh plugins
 echo
-echo "Installing Oh My Zsh... \c"
-if test $(which zsh) && [ ! -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended &>/dev/null
-  echo "Done"
+sh utils/zsh.sh
 
-  echo "Activating zsh plugins..."
-
-  echo "Activating autojump... \c"
-  echo '[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && source /opt/homebrew/etc/profile.d/autojump.sh' >> ~/.zshrc
-  echo "Done"
-
-  echo "Activating zsh-syntax-highligting... \c"
-  echo '[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zshrc
-  echo 'export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters' >> ~/.zshenv
-  echo "Done"
-
-  echo "Activating zsh-completions... \c"
-  echo 'FPATH=/opt/homebrew/share/zsh/site-functions:$FPATH' >> ~/.zprofile
-  rm -f ~/.zcompdump &>/dev/null; compinit &>/dev/null
-  chmod -R go-w "/opt/homebrew/share" &>/dev/null
-  echo "Done"
-
-  echo "Activating zsh-autosuggestions... \c"
-  echo '[ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
-  echo "Done"
-
-  echo "Activating zsh-navigation-tools... \c"
-  echo '[ -f /opt/homebrew/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh ] && source /opt/homebrew/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh' >> ~/.zshrc
-  echo "Done"
-
-  echo "Activating oh-my-zsh plugins... \c"
-  sed -io 's/^plugins=.*/plugins=(git brew common-aliases copypath copyfile encode64 node osx xcode pod docker git-extras git-prompt)/' ~/.zshrc
-  echo "Done"
-fi
-
-echo "Installing zsh theme: powerlevel10k... \c"
-if test $(which zsh) && ! grep -q 'source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme' ~/.zshrc; then
-  brew install romkatv/powerlevel10k/powerlevel10k &>/dev/null
-  # sed -io 's/[{^#| }]*ZSH_THEME="[^"]*/ZSH_THEME="powerlevel10k\/powerlevel10k/g' ~/.zshrc # causes error; powerlevel10k recommends commenting out the theme;
-  sed -io '/^ZSH_THEME/ s/^\#*/\# /' ~/.zshrc
-  echo '[ -f /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme ] && source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
-  curl -Ls $DOTFILES_SRC/raw/main/macOS/zsh/p10k.zsh > ~/.p10k.zsh
-  sed -io 's/^  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=.*/  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last/' ~/.p10k.zsh
-  {
-    echo ''
-    echo '# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.'
-    echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh'
-  } >> ~/.zshrc
-fi
-echo "Done"
-
+# Install powerlevel10k zsh theme
 echo
-sh utils/editor.sh -code
+sh utils/zsh-theme.sh
 
+# Install oh-my-zsh and activate oh-my-zsh plugins
 echo
-echo "Creating Developer directory tree... \c"
-mkdir -p $HOME/{Developer/{Workspace/{IntelliJIDEA,DataGrip,WebStorm,VSCode,Postman/files,iMovie},Projects/{Archive,Current},Source/{Bitbucket,GitHub,GitLab}},Sync} &>/dev/null
-echo "Done"
+sh utils/oh-my-zsh.sh
 
+# Install code editor
 echo
-# Set custom folder icons
-sh utils/folderify.sh
+sh utils/editor.sh -vscode
 
-echo
-echo "Create user's bin directory and add to path... \c"
-[ ! -d $HOME/.bin ] && mkdir $HOME/.bin
-if ! grep -q '$HOME/.bin:$PATH' ~/.zshrc ; then
-  {
-    echo ''
-    echo 'export PATH=$HOME/.bin:$PATH'
-  } >> ~/.zshrc
-fi
-echo "Done"
+# # Creating developer directory tree
+# echo
+# developer_dir_tree
 
+# # Set custom folder icons
+# echo
+# sh utils/folderify.sh
+
+# Setup user's bin dir
 echo
+setup_user_bin_dir
+
 # Restoring private backed up application and personal config files from cloud
+echo
 sh utils/mackup.sh --restore
 
-echo
 # Configure ssh keys
+echo
 sh utils/ssh-keys.sh $GIT_USER_EMAIL
 
+# # Install user apps from cloud backup
 # echo
-## Install user apps from cloud backup
 # sh utils/user-apps.sh
 
+# Install java env manager
 echo
-# Install Jenv/JDK
-sh utils/sdk.sh -jdk temurin
+# sh utils/sdk.sh -jdk temurin
+sh utils/sdk.sh -jenv
 
+# Install node version manager
 echo
-# Install NVM/Node
-sh utils/sdk.sh -node lts
+# sh utils/sdk.sh -node lts
+sh utils/sdk.sh -nvm
 
+# Configure git
 echo
 echo "Configuring Git..."
 if test $(which git); then
@@ -265,22 +213,21 @@ if test $(which git); then
   [[ -f ~/.ssh/id_github ]] && echo "Setting GitHub global access protocol: ssh" && git config --global url."git@github.com:".insteadOf "https://github.com/"
 fi
 
-echo
-# Clone user's projects from version control
-sh utils/projects.sh
+# # Clone user's projects from version control
+# echo
+# sh utils/projects.sh
 
+# # Enable installed services
 # echo
 # echo "Enabling installed services... \c"
-#   # [ -e "/Applications/Amphetamine.app" ] && open /Applications/Amphetamine.app
-#   # [ -e "/Applications/Magnet.app" ] && open /Applications/Magnet.app
-#   # [ -e "/Applications/Alfred\ 4.app" ] && open /Applications/Alfred\ 4.app
-#   # [ -e "/Applications/Gas\ Mask.app" ] && open /Applications/Gas\ Mask.app
-#   # if test $(command -v syncthing); then brew services start syncthing &>/dev/null; fi
+#   # [ -e "/Applications/Rectangle.app" ] && open /Applications/Rectangle.app
+#   # [ -e "/Applications/Hidden Bar.app" ] && open /Applications/Hidden Bar.app
+#   # [ -e "/Applications/AdGuard.app" ] && open /Applications/AdGuard.app
 # echo "Done"
 
 echo
 echo "${YELLOW}Thanks for using DevMyMacX!${NC}"
-echo "${YELLOW}If you liked it, make sure to go to the GitHub repo (https://github.com/shubhamgulati91/DevMyMacX) and star it!${NC}"
+echo "${YELLOW}If you liked it, make sure to go to the GitHub repo (https://github.com/iamshgulati/DevMyMacX) and star it!${NC}"
 echo "${YELLOW}If you have any issues, just put them there. All suggestions and contributions are appreciated!${NC}"
 
 echo

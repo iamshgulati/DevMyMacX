@@ -7,7 +7,7 @@ Watch it in action - [This is DevMyMacX](https://youtu.be/F-dSk_fuaSQ)
 ## Initialize setup
 
 ```sh
-sh -c "$(curl -fsSL https://github.com/shubhamgulati91/DevMyMacX/raw/main/bootstrap.sh)" "" --initialize --manual --lean
+sh -c "$(curl -fsSL https://github.com/iamshgulati/DevMyMacX/raw/main/bootstrap.sh)" "" --initialize --manual --express
 ```
 
 &nbsp;
@@ -15,7 +15,7 @@ sh -c "$(curl -fsSL https://github.com/shubhamgulati91/DevMyMacX/raw/main/bootst
 ## Refresh Setup
 
 ```sh
-sh -c "$(curl -fsSL https://github.com/shubhamgulati91/DevMyMacX/raw/main/bootstrap.sh)" "" --update --automatic --lean
+sh -c "$(curl -fsSL https://github.com/iamshgulati/DevMyMacX/raw/main/bootstrap.sh)" "" --update --automatic --express
 ```
 
 &nbsp;
@@ -91,18 +91,18 @@ sh -c "$(curl -fsSL https://github.com/shubhamgulati91/DevMyMacX/raw/main/bootst
 
    To customize Brewfiles before running installer/updater, fork dotfiles repository and provide custom path during manual setup.
 
-   [Dotfiles repository](https://github.com/shubhamgulati91/dotfiles) - <https://github.com/shubhamgulati91/dotfiles>
+   [Dotfiles repository](https://github.com/iamshgulati/dotfiles) - <https://github.com/iamshgulati/dotfiles>
 
-   [Default Brewfiles source url](https://github.com/shubhamgulati91/dotfiles/tree/main/macOS/homebrew) - <https://github.com/shubhamgulati91/dotfiles/raw/main/macOS/homebrew>
+   [Default Brewfiles source url](https://github.com/iamshgulati/dotfiles/tree/main/macOS/homebrew) - <https://github.com/iamshgulati/dotfiles/raw/main/macOS/homebrew>
 
    &nbsp;
 
 4. Brewfiles
 
-   [Brewfile-Mac-App-Store-Bundle](https://github.com/shubhamgulati91/dotfiles/blob/main/macOS/homebrew/Brewfile-Mac-App-Store-Bundle)
+   [Brewfile-Mac-App-Store-Bundle](https://github.com/iamshgulati/dotfiles/blob/main/macOS/homebrew/Brewfile-Mac-App-Store-Bundle)
 
-   [Brewfile-Essential-Bundle](https://github.com/shubhamgulati91/dotfiles/blob/main/macOS/homebrew/Brewfile-Essential-Bundle)
+   [Brewfile-Essential-Bundle](https://github.com/iamshgulati/dotfiles/blob/main/macOS/homebrew/Brewfile-Essential-Bundle)
 
-   [Brewfile-Developer-Bundle](https://github.com/shubhamgulati91/dotfiles/blob/main/macOS/homebrew/Brewfile-Developer-Bundle)
+   [Brewfile-Developer-Bundle](https://github.com/iamshgulati/dotfiles/blob/main/macOS/homebrew/Brewfile-Developer-Bundle)
 
-   [Brewfile-MS-Office-Bundle](https://github.com/shubhamgulati91/dotfiles/blob/main/macOS/homebrew/Brewfile-MS-Office-Bundle)
+   [Brewfile-MS-Office-Bundle](https://github.com/iamshgulati/dotfiles/blob/main/macOS/homebrew/Brewfile-MS-Office-Bundle)
