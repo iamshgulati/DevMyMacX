@@ -170,9 +170,9 @@ sh utils/editor.sh -vscode
 echo
 setup_user_bin_dir
 
-# Restoring private backed up application and personal config files from cloud
-echo
-sh utils/mackup.sh --restore
+# # Restoring private backed up application and personal config files from cloud
+# echo
+# sh utils/mackup.sh --restore
 
 # Configure ssh keys
 echo
