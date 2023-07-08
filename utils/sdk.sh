@@ -13,6 +13,7 @@ setup_jenv () {
     if ! grep -q '"$HOME/.jenv/bin:$PATH"' ~/.zshrc; then
         {
             echo ''
+            echo '# activate java env manager'
             echo 'export PATH="$HOME/.jenv/bin:$PATH"'
             echo 'eval "$(jenv init -)"'
         } >> ~/.zshrc
@@ -57,6 +58,7 @@ setup_nvm () {
     if ! grep -q '. "/opt/homebrew/opt/nvm/nvm.sh"' ~/.zshrc; then
         {
             echo ''
+            echo '# activate node version manager'
             echo 'export NVM_DIR="$HOME/.nvm"'
             echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"'
             echo '[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"'

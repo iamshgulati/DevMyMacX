@@ -10,7 +10,8 @@ echo "Done"
 
 echo "Activating zsh plugins..."
 if test $(which zsh); then
-  echo ''
+  echo '' >> ~/.zshrc
+  echo '# activate zsh plugins' >> ~/.zshrc
 
   echo "Activating autojump... \c"
   brew install autojump &>/dev/null

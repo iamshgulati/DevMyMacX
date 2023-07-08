@@ -83,6 +83,13 @@ install_rosetta() {
   echo "Done"
 }
 
+developer_dir() {
+  echo "Creating developer directory... \c"
+  # mkdir -p $HOME/{Developer/{Workspace/{IntelliJIDEA,DataGrip,WebStorm,VSCode,Postman/files,iMovie},Projects/{Archive,Current},Source/{Bitbucket,GitHub,GitLab}},Sync} &>/dev/null
+  mkdir -p $HOME/{Developer} &>/dev/null
+  echo "Done"
+}
+
 developer_dir_tree() {
   echo "Creating developer directory tree... \c"
   mkdir -p $HOME/{Developer/{Workspace/{IntelliJIDEA,DataGrip,WebStorm,VSCode,Postman/files,iMovie},Projects/{Archive,Current},Source/{Bitbucket,GitHub,GitLab}},Sync} &>/dev/null
@@ -95,6 +102,7 @@ setup_user_bin_dir() {
   if ! grep -q '$HOME/.bin:$PATH' ~/.zshrc ; then
     {
       echo ''
+      echo '# add user bin dir to path'
       echo 'export PATH=$HOME/.bin:$PATH'
     } >> ~/.zshrc
   fi

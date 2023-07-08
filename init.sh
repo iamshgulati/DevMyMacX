@@ -133,7 +133,6 @@ echo "Done"
 echo
 echo "Installing Mac App Store CLI Support... \c"
 brew install mas &>/dev/null
-# mas signin $GIT_USER_EMAIL
 echo "Done"
 
 # Install Brewfiles
@@ -142,25 +141,25 @@ install_bundle $DEFAULT_BREWFILE_ESSENTIALS $INSTALL_BUNDLE_ESSENTIALS
 install_bundle $DEFAULT_BREWFILE_DEVELOPER $INSTALL_BUNDLE_DEVELOPMENT
 install_bundle $DEFAULT_BREWFILE_MSOFFICE $INSTALL_BUNDLE_MSOFFICE
 
+# Install oh-my-zsh and activate oh-my-zsh plugins
+echo
+sh utils/oh-my-zsh.sh
+
+# Install powerlevel10k zsh theme
+echo
+sh utils/zsh-theme.sh
+
 # Install zsh and activate zsh plugins
 echo
 sh utils/zsh.sh
-
-# # Install powerlevel10k zsh theme
-# echo
-# sh utils/zsh-theme.sh
-
-# # Install oh-my-zsh and activate oh-my-zsh plugins
-# echo
-# sh utils/oh-my-zsh.sh
 
 # Install code editor
 echo
 sh utils/editor.sh -vscode
 
-# # Creating developer directory tree
-# echo
-# developer_dir_tree
+# Creating developer directory
+echo
+developer_dir
 
 # # Set custom folder icons
 # echo
@@ -170,9 +169,9 @@ sh utils/editor.sh -vscode
 echo
 setup_user_bin_dir
 
-# # Restoring private backed up application and personal config files from cloud
-# echo
-# sh utils/mackup.sh --restore
+# Restoring private backed up application and personal config files from cloud
+echo
+sh utils/mackup.sh --restore
 
 # Configure ssh keys
 echo
@@ -213,9 +212,9 @@ if test $(which git); then
   [[ -f ~/.ssh/id_github ]] && echo "Setting GitHub global access protocol: ssh" && git config --global url."git@github.com:".insteadOf "https://github.com/"
 fi
 
-# # Clone user's projects from version control
-# echo
-# sh utils/projects.sh
+# Clone user's projects from version control
+echo
+sh utils/projects.sh
 
 # # Enable installed services
 # echo
