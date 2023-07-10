@@ -21,10 +21,18 @@ backup () {
     if [[ ! -d "${MACKUP_BACKUP_LOCATION}" ]]; then
         mkdir -p "$MACKUP_BACKUP_LOCATION"
     fi
-    echo "Backing up user's application config files to cloud at $MACKUP_BACKUP_LOCATION/Mackup using mackup... \c"
+    echo "Backing up user's application config files to $MACKUP_BACKUP_LOCATION/Mackup using mackup... \c"
     check_installation
-    curl -Ls $DEFAULT_DOTFILES_REPO/raw/main/macOS/mackup/mackup.cfg > ~/.mackup.cfg
+    # curl -Ls $DEFAULT_DOTFILES_REPO/raw/main/macOS/mackup/mackup.cfg > ~/.mackup.cfg
     mackup -f backup &>/dev/null
+    echo "Done"
+
+    echo "Pushing config changes... \c"
+    cd $MACKUP_BACKUP_LOCATION
+    git add . &>/dev/null
+    git commit -m "chore: config updates" &>/dev/null
+    git push &>/dev/null
+    cd - &>/dev/null
     echo "Done"
 }
 
