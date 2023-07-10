@@ -86,7 +86,7 @@ install_rosetta() {
 developer_dir() {
   echo "Creating developer directory... \c"
   # mkdir -p $HOME/{Developer/{Workspace/{IntelliJIDEA,DataGrip,WebStorm,VSCode,Postman/files,iMovie},Projects/{Archive,Current},Source/{Bitbucket,GitHub,GitLab}},Sync} &>/dev/null
-  mkdir -p $HOME/{Developer} &>/dev/null
+  mkdir -p $HOME/Developer &>/dev/null
   echo "Done"
 }
 
