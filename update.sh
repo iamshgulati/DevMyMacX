@@ -119,10 +119,10 @@ brew doctor &>/dev/null
 echo "Done"
 
 # Update oh my zsh
-echo
-echo "Updating Oh My Zsh... \c"
-if [ -d "$HOME/.oh-my-zsh" ]; then env ZSH=$ZSH sh $ZSH/tools/upgrade.sh &>/dev/null; fi
-echo "Done"
+# echo
+# echo "Updating Oh My Zsh... \c"
+# if [ -d "$HOME/.oh-my-zsh" ]; then env ZSH=$ZSH sh $ZSH/tools/upgrade.sh &>/dev/null; fi
+# echo "Done"
 
 # Update mac apps
 echo
