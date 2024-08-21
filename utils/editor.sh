@@ -7,7 +7,7 @@ EDITOR=$1
 DEFAULT_DOTFILES_REPO='https://github.com/iamshgulati/dotfiles'
 
 setup_vscode () {
-    echo "Installing up VSCode..."
+    echo "Installing VSCode..."
     if ! test $(which code); then
         brew install --cask visual-studio-code &>/dev/null
     fi
