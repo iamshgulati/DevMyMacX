@@ -41,3 +41,23 @@ if test $(which zsh); then
   echo '[ -f /opt/homebrew/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh ] && source /opt/homebrew/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh' >> ~/.zshrc
   echo "Done"
 fi
+
+echo "Configuring zsh aliases..."
+if test $(which zsh); then
+  echo '' >> ~/.zshrc
+  echo '# zsh aliases' >> ~/.zshrc
+  echo 'alias reload='\''source ~/.zshrc'\''' >> ~/.zshrc
+  echo 'alias zshconfig='\''nano $HOME/.zshrc'\''' >> ~/.zshrc
+  echo 'alias ll='\''ls -al'\''' >> ~/.zshrc
+  echo 'alias -g L='\''| less'\''' >> ~/.zshrc
+  echo 'alias -g G='\''| grep'\''' >> ~/.zshrc
+  
+  echo '' >> ~/.zshrc
+  echo 'function acp() {' >> ~/.zshrc
+  echo '  git add .' >> ~/.zshrc
+  echo '  git commit -m "$1"' >> ~/.zshrc
+  echo '  git push' >> ~/.zshrc
+  echo '}' >> ~/.zshrc
+
+  echo 'Done'
+fi
